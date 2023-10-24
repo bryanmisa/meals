@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'package:meals/screens/categories.dart';
 
-
 final theme = ThemeData(
   useMaterial3: true,
   colorScheme: ColorScheme.fromSeed(
@@ -24,6 +23,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: theme,
       home: const CategoriesScreen(),
     );
