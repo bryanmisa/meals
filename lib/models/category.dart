@@ -6,7 +6,7 @@ class Category {
     required this.title,
     this.color = Colors.orange,
   });
-  // detail
+
   final String id;
   final String title;
   final Color color;
