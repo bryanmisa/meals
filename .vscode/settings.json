@@ -1,4 +1,5 @@
 {
     "gitdoc.enabled": true,
-    "git.confirmSync": false
+    "git.confirmSync": false,
+    "git.allowNoVerifyCommit": true
 }
