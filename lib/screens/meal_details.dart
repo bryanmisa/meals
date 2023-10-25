@@ -17,11 +17,20 @@ class MealDetailsScreen extends StatelessWidget {
         title: Text(
           meal.title,
         ),
+        actions: [
+          // button to add the meal as favorite
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.star,
+            ),
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         // Alternatively, you can use ListView instead of column
-        // to scroll. However it will not be centered. 
-        // Retain Column widget and wrap it with SingleChildScrollView 
+        // to scroll. However it will not be centered.
+        // Retain Column widget and wrap it with SingleChildScrollView
         child: Column(
           children: [
             Image.network(
