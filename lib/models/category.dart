@@ -7,6 +7,7 @@ class Category {
     this.color = Colors.orange,
   });
 
+  // this is a comment
   final String id;
   final String title;
   final Color color;
