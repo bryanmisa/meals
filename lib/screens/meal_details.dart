@@ -5,10 +5,14 @@ class MealDetailsScreen extends StatelessWidget {
   const MealDetailsScreen({
     super.key,
     required this.meal,
+    required this.onToggleFavorite,
   });
 
   // Adding Meal as property
   final Meal meal;
+  // this will lift the state up to access the favorite list meal to the upper
+  // widgets
+  final void Function(Meal meal) onToggleFavorite;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +24,9 @@ class MealDetailsScreen extends StatelessWidget {
         actions: [
           // button to add the meal as favorite
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              onToggleFavorite(meal);
+            },
             icon: const Icon(
               Icons.star,
             ),

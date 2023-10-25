@@ -2,11 +2,17 @@ import 'package:flutter/material.dart';
 
 import 'package:meals/data/dummy_data.dart';
 import 'package:meals/models/category.dart';
+import 'package:meals/models/meal.dart';
 import 'package:meals/screens/meals.dart';
 import 'package:meals/widgets/category_grid_item.dart';
 
 class CategoriesScreen extends StatelessWidget {
-  const CategoriesScreen({super.key});
+  const CategoriesScreen({
+    super.key,
+    required this.onToggleFavorite,
+  });
+
+  final void Function(Meal meal) onToggleFavorite;
 
   // this function that will be passed when GridCategoryItem is tapped.
   void _selectedCategory(BuildContext context, Category category) {
@@ -15,12 +21,13 @@ class CategoriesScreen extends StatelessWidget {
     final filteredMeals = dummyMeals
         .where((meal) => meal.categories.contains(category.id))
         .toList();
-    
+
     Navigator.of(context).push(
       MaterialPageRoute(
         // MaterialPageRoute() is used to build the screen widget
         // adding builder is necessary to create a new build screen page
         builder: (ctx) => MealsScreen(
+          onToggleFavorite: onToggleFavorite,
           title: category.title,
           meals: filteredMeals,
         ),

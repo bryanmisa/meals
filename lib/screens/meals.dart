@@ -6,22 +6,27 @@ import 'package:meals/widgets/meal_item.dart';
 class MealsScreen extends StatelessWidget {
   const MealsScreen({
     super.key,
-    this.title, // remove title incase that tile is null.
+    this.title, // remove required title incase that tile is null.
     required this.meals,
+    required this.onToggleFavorite, 
   });
 
   final String? title; // added ? so title can be null
   final List<Meal> meals;
 
+  // created this property just to forward the property to the MailDetailScreen
+  final void Function(Meal meal) onToggleFavorite;
+
   void selectMeal(BuildContext context, Meal meal) {
-    // once a meal is seletected this will build the MealDetailsScreen
+    // once a meal is selected this will build the MealDetailsScreen
     // page.
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (ctx) => MealDetailsScreen(
+          onToggleFavorite: onToggleFavorite,
           meal: meal,
         ),
-      ),
+      ), 
     );
   }
 
