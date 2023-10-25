@@ -6,14 +6,16 @@ import 'package:meals/widgets/meal_item.dart';
 class MealsScreen extends StatelessWidget {
   const MealsScreen({
     super.key,
-    required this.title,
+    this.title, // remove title incase that tile is null.
     required this.meals,
   });
 
-  final String title;
+  final String? title; // added ? so title can be null
   final List<Meal> meals;
 
   void selectMeal(BuildContext context, Meal meal) {
+    // once a meal is seletected this will build the MealDetailsScreen
+    // page.
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (ctx) => MealDetailsScreen(
@@ -58,9 +60,19 @@ class MealsScreen extends StatelessWidget {
         ),
       );
     }
+
+    // if condition is used for tabs.dart, thus if null show only content
+    // then if its not null then return the Scaffold with AppBar
+    if (title == null) {
+      return content;
+    }
+
     return Scaffold(
       appBar: AppBar(
-        title: Text(title),
+        title: Text(
+          // added ! that title will never be null.
+          title!,
+        ),
       ),
       body: content,
     );
