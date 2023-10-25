@@ -7,6 +7,7 @@ class MealDetailsScreen extends StatelessWidget {
     required this.meal,
   });
 
+  // Adding Meal as property
   final Meal meal;
 
   @override
