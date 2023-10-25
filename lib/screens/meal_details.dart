@@ -21,7 +21,6 @@ class MealDetailsScreen extends StatelessWidget {
         // Alternatively, you can use ListView instead of column
         // to scroll. However it will not be centered. 
         // Retain Column widget and wrap it with SingleChildScrollView 
-        // instead
         child: Column(
           children: [
             Image.network(

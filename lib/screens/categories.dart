@@ -8,18 +8,18 @@ import 'package:meals/widgets/category_grid_item.dart';
 class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({super.key});
 
-  // a function that will be passed on onTap.
+  // this function that will be passed when GridCategoryItem is tapped.
   void _selectedCategory(BuildContext context, Category category) {
-    // where is iterable but is a list
+    // .where() is iterable but is a list
     // iterating through that contains the category id of a meal
     final filteredMeals = dummyMeals
         .where((meal) => meal.categories.contains(category.id))
         .toList();
-
+    
     Navigator.of(context).push(
       MaterialPageRoute(
         // MaterialPageRoute() is used to build the screen widget
-        // and adding builder is necessary to create a new build screen page
+        // adding builder is necessary to create a new build screen page
         builder: (ctx) => MealsScreen(
           title: category.title,
           meals: filteredMeals,
