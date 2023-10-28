@@ -10,15 +10,17 @@ class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({
     super.key,
     required this.onToggleFavorite,
+    required this.availableMeals,
   });
 
   final void Function(Meal meal) onToggleFavorite;
+  final List<Meal> availableMeals;
 
   // this function that will be passed when GridCategoryItem is tapped.
   void _selectedCategory(BuildContext context, Category category) {
     // .where() is iterable but is a list
     // iterating through that contains the category id of a meal
-    final filteredMeals = dummyMeals
+    final filteredMeals = availableMeals
         .where((meal) => meal.categories.contains(category.id))
         .toList();
 
