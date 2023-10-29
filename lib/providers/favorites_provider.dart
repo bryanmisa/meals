@@ -10,15 +10,17 @@ class FavoriteMealsNotifier extends StateNotifier<List<Meal>> {
   // initialize data as an empty list
   FavoriteMealsNotifier() : super([]);
 
-  void toggleMealFavoriteStatus(Meal meal) {
+  bool toggleMealFavoriteStatus(Meal meal) {
     // state is a globally state property from StateNotifier
     final mealIsFavorite = state.contains(meal);
 
     if (mealIsFavorite) {
-      // remove a meal 
+      // remove a meal
       state = state.where((m) => m.id != meal.id).toList();
+      return false;
     } else {
       state = [...state, meal];
+      return true;
     }
   }
 }

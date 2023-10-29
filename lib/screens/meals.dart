@@ -8,14 +8,14 @@ class MealsScreen extends StatelessWidget {
     super.key,
     this.title, // remove required title incase that tile is null.
     required this.meals,
-    required this.onToggleFavorite, 
+    // required this.onToggleFavorite, // replaced by riverpod
   });
 
   final String? title; // added ? so title can be null
   final List<Meal> meals;
 
   // created this property just to forward the property to the MailDetailScreen
-  final void Function(Meal meal) onToggleFavorite;
+  // final void Function(Meal meal) onToggleFavorite; // replaced by riverpod
 
   void selectMeal(BuildContext context, Meal meal) {
     // once a meal is selected this will build the MealDetailsScreen
@@ -23,7 +23,7 @@ class MealsScreen extends StatelessWidget {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (ctx) => MealDetailsScreen(
-          onToggleFavorite: onToggleFavorite,
+          // onToggleFavorite: onToggleFavorite, // replaced by riverpod
           meal: meal,
         ),
       ), 

@@ -9,11 +9,12 @@ import 'package:meals/widgets/category_grid_item.dart';
 class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({
     super.key,
-    required this.onToggleFavorite,
+    // required this.onToggleFavorite, // replaced by riverpod
     required this.availableMeals,
   });
 
-  final void Function(Meal meal) onToggleFavorite;
+  // final void Function(Meal meal) onToggleFavorite; // replaced by riverpod
+  
   final List<Meal> availableMeals;
 
   // this function that will be passed when GridCategoryItem is tapped.
@@ -29,7 +30,7 @@ class CategoriesScreen extends StatelessWidget {
         // MaterialPageRoute() is used to build the screen widget
         // adding builder is necessary to create a new build screen page
         builder: (ctx) => MealsScreen(
-          onToggleFavorite: onToggleFavorite,
+          // onToggleFavorite: onToggleFavorite, // replaced by riverpod
           title: category.title,
           meals: filteredMeals,
         ),
