@@ -15,7 +15,7 @@ class FavoriteMealsNotifier extends StateNotifier<List<Meal>> {
     final mealIsFavorite = state.contains(meal);
 
     if (mealIsFavorite) {
-      // remove a meal.
+      // remove a meal 
       state = state.where((m) => m.id != meal.id).toList();
     } else {
       state = [...state, meal];
