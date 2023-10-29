@@ -5,6 +5,8 @@ import 'package:meals/screens/categories.dart';
 import 'package:meals/screens/filters.dart';
 import 'package:meals/screens/meals.dart';
 import 'package:meals/widgets/main_drawer.dart';
+import 'package:meals/providers/meals_providers.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 const kInitialFilters = {
   Filter.glutenFree: false,
@@ -13,14 +15,19 @@ const kInitialFilters = {
   Filter.vegan: false,
 };
 
-class TabsScreen extends StatefulWidget {
+// ConsumerStatefulWidget is provided by the RiverPod Package allows to listen
+// to the providers and allow changes to the providers.
+// To convert to ConsumerStateful Widget add Consumer on all state (single
+// word state).
+
+class TabsScreen extends ConsumerStatefulWidget {
   const TabsScreen({super.key});
 
   @override
-  State<TabsScreen> createState() => _TabsScreenState();
+  ConsumerState<TabsScreen> createState() => _TabsScreenState();
 }
 
-class _TabsScreenState extends State<TabsScreen> {
+class _TabsScreenState extends ConsumerState<TabsScreen> {
   int _selectedPageIndex = 0;
   final List<Meal> _favoriteMeals = []; // stores new list as favorite meals
   Map<Filter, bool> _selectedFilters = kInitialFilters;
@@ -80,8 +87,18 @@ class _TabsScreenState extends State<TabsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // ref -> allows to setup listeners to providers this is from RiverPod
+    // ref.read(); -> to get data from a provider once.
+    // ref.watch(); -> to make sure that the build method executes again as the
+    // data changes. as advised from the technical reference use ref.watch as
+    // often as possible even if it will read data once to avoid bugs
+    
+    // returns the data of the provider it watches
+    final meals = ref.watch(mealsProvider); 
+
     // availableMeals will be passed to Categories Screen
-    final availableMeals = dummyMeals.where((meals) {
+    final availableMeals = meals.where((meals) { /*meals is a reference provider*/ 
+    
       if (_selectedFilters[Filter.glutenFree]! && !meals.isGlutenFree) {
         return false;
       }
